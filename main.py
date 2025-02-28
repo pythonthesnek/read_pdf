@@ -1,30 +1,20 @@
 import PyPDF2
 
-# Open the PDF file
-pdf_file = open('test.pdf', 'rb')
 
-# Create a PDF reader object
-pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+pdf_file = open('test.pdf', 'rb') # Extract the text from the PDF and store the words in a set
 
-# Get the number of pages in the PDF
-num_pages = pdf_reader.numPages
+pdf_reader = PyPDF2.PdfReader(pdf_file) # Create a PDF reader object
 
-# Initialize an empty list to store the words
-words = []
+num_pages = len(pdf_reader.pages) # Get the number of pages
 
-# Iterate over each page in the PDF
-for page in range(num_pages):
-    # Extract the text from the current page
-    page_text = pdf_reader.getPage(page).extractText()
-    
-    # Split the text into individual words
+words = set() # Create a set to store the words
+
+# Loop through each page and extract the text
+for page in pdf_reader.pages:
+    page_text = page.extract_text()
     page_words = page_text.split()
-    
-    # Add the words to the list
-    words.extend(page_words)
+    words.update(page_words) 
 
-# Close the PDF file
 pdf_file.close()
 
-# Print the list of words
 print(words)
