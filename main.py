@@ -1,8 +1,7 @@
 import PyPDF2
 
 
-pdf_file = open('test.pdf', 'rb') # Extract the text from the PDF and store the words in a set
-
+pdf_file = open('your_pdf_here.pdf', 'rb') # make sure you copy the name of your pdf correctly and don't remove the .pdf part
 pdf_reader = PyPDF2.PdfReader(pdf_file) # Create a PDF reader object
 
 num_pages = len(pdf_reader.pages) # Get the number of pages
